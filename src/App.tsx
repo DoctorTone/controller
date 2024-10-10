@@ -1,12 +1,21 @@
 import { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Box } from "@react-three/drei";
-import { XR, createXRStore } from "@react-three/xr";
+import {
+  XR,
+  XRControllerComponent,
+  XRControllerModel,
+  createXRStore,
+} from "@react-three/xr";
 import Lights from "./components/Lights";
 import VRNavigation from "./components/VRNavigation";
+import TutorialComponent from "./components/TutorialComponent";
+import CustomController from "./components/CustomController";
 
 const interactionsEnabled = true;
-const store = createXRStore({ controller: { right: true } });
+const store = createXRStore({
+  controller: CustomController,
+});
 
 function App() {
   const [VRSupported, setVRSupported] = useState(false);
@@ -34,10 +43,11 @@ function App() {
       )}
       <Canvas>
         <XR store={store}>
-          <Box>
+          <Box position-x={-1.5}>
             <meshStandardMaterial color={"blue"} />
           </Box>
           <Lights />
+          {/* <TutorialComponent /> */}
           {VRSupported && <VRNavigation />}
         </XR>
         <OrbitControls
