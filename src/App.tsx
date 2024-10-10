@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Box } from "@react-three/drei";
 import { XR, createXRStore } from "@react-three/xr";
+import Lights from "./components/Lights";
 
 const interactionsEnabled = true;
 const store = createXRStore({ controller: { right: true } });
@@ -32,7 +33,10 @@ function App() {
       )}
       <Canvas>
         <XR store={store}>
-          <Box />
+          <Box>
+            <meshStandardMaterial color={"blue"} />
+          </Box>
+          <Lights />
         </XR>
         <OrbitControls
           makeDefault
