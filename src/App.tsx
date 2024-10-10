@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Box } from "@react-three/drei";
 import { XR, createXRStore } from "@react-three/xr";
 import Lights from "./components/Lights";
+import VRNavigation from "./components/VRNavigation";
 
 const interactionsEnabled = true;
 const store = createXRStore({ controller: { right: true } });
@@ -37,6 +38,7 @@ function App() {
             <meshStandardMaterial color={"blue"} />
           </Box>
           <Lights />
+          {VRSupported && <VRNavigation />}
         </XR>
         <OrbitControls
           makeDefault
